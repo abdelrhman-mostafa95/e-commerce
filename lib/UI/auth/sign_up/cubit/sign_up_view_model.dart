@@ -17,26 +17,21 @@ class RegisterViewModel extends Cubit<RegisterStates> {
   final TextEditingController rePasswordController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
 
-  RegisterViewModel({required this.registerUseCase}) : super(RegisterInitialState());
+  RegisterViewModel({required this.registerUseCase})
+      : super(RegisterInitialState());
 
-  void register() async {
-    emit(RegisterLoadingState(loadingMessage: 'Loading ...'));
-
-    // Create the DTO from form values
-    final dto = RegisterDto(
-      email: emailController.text.trim(),
-      password: passwordController.text.trim(),
-      name: nameController.text.trim(),
-      phone: phoneController.text.trim(),
-      rePassword: rePasswordController.text.trim(),
+  Future<void> register() async {
+    emit(RegisterLoadingState(loadingMessage: 'Loading ....'));
+    var either = await registerUseCase.invoke(
+        emailController.text,
+        passwordController.text,
+        nameController.text,
+        phoneController.text,
+        rePasswordController.text
     );
-
-    // Call the use case
-    final either = await registerUseCase.invoke(dto);
-
-    either.fold(
-          (error) => emit(RegisterErrorState(failures: error)),
-          (response) => emit(RegisterSuccessState(registerEntity: response)),
-    );
+    either.fold((l) => emit(RegisterErrorState(failures: l)),
+            (response) {
+          emit(RegisterSuccessState(registerEntity: response));
+        });
   }
 }

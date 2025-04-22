@@ -9,11 +9,7 @@ import '../../core/widget/text_form_field.dart';
 
 class SignUp extends StatelessWidget {
   static const String routeName = '/signup';
-  TextEditingController fullName = TextEditingController();
-  TextEditingController mobileNumber = TextEditingController();
-  TextEditingController email = TextEditingController();
-  TextEditingController password = TextEditingController();
-  var formKey = GlobalKey<FormState>();
+  var formKeyRegister = GlobalKey<FormState>();
   RegisterViewModel viewModel = getIt<RegisterViewModel>();
 
   @override
@@ -42,7 +38,7 @@ class SignUp extends StatelessWidget {
           backgroundColor: Color(0xFF004182),
           body: SingleChildScrollView(
             child: Form(
-              key: formKey,
+              key: formKeyRegister,
               child: Center(
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -65,7 +61,7 @@ class SignUp extends StatelessWidget {
                               height:
                                   MediaQuery.of(context).size.height * 0.005,
                             ),
-                            CustomTextFormField(
+                            CustomFormField(
                               hint: 'enter your full name',
                               validator: (input) {
                                 if (input == null || input.trim().isEmpty) {
@@ -93,7 +89,7 @@ class SignUp extends StatelessWidget {
                               height:
                                   MediaQuery.of(context).size.height * 0.005,
                             ),
-                            CustomTextFormField(
+                            CustomFormField(
                               hint: 'enter your mobile number',
                               validator: (input) {
                                 if (input == null || input.trim().isEmpty) {
@@ -117,7 +113,7 @@ class SignUp extends StatelessWidget {
                               height:
                                   MediaQuery.of(context).size.height * 0.005,
                             ),
-                            CustomTextFormField(
+                            CustomFormField(
                               hint: 'enter your email address',
                               validator: (input) {
                                 if (input == null || input.trim().isEmpty) {
@@ -141,7 +137,7 @@ class SignUp extends StatelessWidget {
                               height:
                                   MediaQuery.of(context).size.height * 0.005,
                             ),
-                            CustomTextFormField(
+                            CustomFormField(
                               hint: 'enter your password',
                               validator: (input) {
                                 if (input == null || input.isEmpty) {
@@ -171,7 +167,7 @@ class SignUp extends StatelessWidget {
                               height:
                                   MediaQuery.of(context).size.height * 0.005,
                             ),
-                            CustomTextFormField(
+                            CustomFormField(
                               hint: 'Confirm enter your password',
                               validator: (input) {
                                 if (input == null || input.isEmpty) {
@@ -229,6 +225,6 @@ class SignUp extends StatelessWidget {
   }
 
   void validatorTestField() {
-    if (formKey.currentState?.validate() == true) {}
+    if (formKeyRegister.currentState?.validate() == true) {}
   }
 }

@@ -12,6 +12,8 @@ class ApiManager{
     return await dio.get(AppConstants.baseUrl+endPoint, queryParameters: query);
   }
   Future<Response> postData(String endPoint, {Map<String, dynamic>? body}) async {
-    return await dio.post(AppConstants.baseUrl+endPoint, data: body);
+    return await dio.post(AppConstants.baseUrl+endPoint, data: body,
+      options: Options(validateStatus: (status) => true,),
+    );
   }
 }

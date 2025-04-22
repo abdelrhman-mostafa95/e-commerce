@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 typedef Validator = String? Function(String?);
 
-class CustomTextFormField extends StatelessWidget {
+class CustomFormField extends StatelessWidget {
   String hint;
   TextInputType keyboardType;
   bool isSecureText;
@@ -10,7 +10,7 @@ class CustomTextFormField extends StatelessWidget {
   TextEditingController? controller;
   Widget? icon;
 
-  CustomTextFormField(
+  CustomFormField(
       {required this.hint,
         this.keyboardType = TextInputType.text,
         this.isSecureText = false,

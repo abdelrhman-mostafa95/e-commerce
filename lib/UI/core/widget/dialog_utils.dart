@@ -8,12 +8,13 @@ class DialogUtils {
       context: context,
       builder: (context) {
         return AlertDialog(
+          backgroundColor: Color(0xFF004182),
           content: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               CircularProgressIndicator(
-                color: Colors.black,
+                color: Colors.white,
               ),
               SizedBox(
                 width: MediaQuery.of(context).size.width * 0.02,
@@ -22,7 +23,7 @@ class DialogUtils {
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
                   message,
-                  style: TextStyle(fontSize: 18, color: Colors.black),
+                  style: TextStyle(fontSize: 18, color: Colors.white),
                 ),
               )
             ],
@@ -55,7 +56,7 @@ class DialogUtils {
           child: Text(
             posActionName,
             textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 18, color: Colors.black),
+            style: TextStyle(fontSize: 18, color: Colors.white),
           )));
     }
     if (negActionName != null) {
@@ -67,7 +68,7 @@ class DialogUtils {
           child: Text(
             negActionName,
             textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 18, color: Colors.black),
+            style: TextStyle(fontSize: 18, color: Colors.white),
           )));
     }
     showDialog(
@@ -75,10 +76,11 @@ class DialogUtils {
       context: context,
       builder: (context) {
         return AlertDialog(
+          backgroundColor: Color(0xFF004182),
           content: Text(
             message,
             textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 18, color: Colors.black),
+            style: TextStyle(fontSize: 18, color: Colors.white),
           ),
           actions: actions,
         );

@@ -7,9 +7,9 @@ class RegisterUseCase {
   AuthRepository registerRepository;
 
   RegisterUseCase({required this.registerRepository});
-  invoke(RegisterDto registerDto) async {
+  invoke(String email, String password, String name, String phone, String rePassword) async {
     return registerRepository.register(
-        registerDto
+        email, password, name, phone, rePassword
     );
   }
 }

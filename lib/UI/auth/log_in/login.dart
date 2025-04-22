@@ -1,20 +1,45 @@
+import 'package:ecommerce_app_v2/UI/auth/log_in/cubit/log_in_view_model.dart';
+import 'package:ecommerce_app_v2/UI/auth/log_in/cubit/login_states.dart';
 import 'package:ecommerce_app_v2/UI/auth/sign_up/sign_up.dart';
 import 'package:ecommerce_app_v2/UI/core/widget/text_form_field.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../di/di.dart';
+import '../../core/widget/dialog_utils.dart';
 
 class Login extends StatelessWidget {
   static const String routeName = '/login';
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-  var formKey = GlobalKey<FormState>();
+  var formKeyLogin = GlobalKey<FormState>();
+  LoginViewModel viewModel = getIt<LoginViewModel>();
+
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return BlocListener<LoginViewModel, LoginStates>(
+      bloc: viewModel,
+      listener: (context, state) {
+        if (state is LoginLoadingState) {
+          DialogUtils.showLoading(context: context, message: 'Loading ...');
+        } else if (state is LoginErrorState) {
+          DialogUtils.hideLoading(context);
+          DialogUtils.showMessage(
+              context: context,
+              message: state.failures.errorMessage,
+              negActionName: 'ok');
+        } else if (state is LoginSuccessState) {
+          DialogUtils.hideLoading(context);
+          DialogUtils.showMessage(
+              context: context,
+              message: 'Login Successfully',
+              negActionName: 'ok');
+        }
+      },
+  child: Scaffold(
         backgroundColor: Color(0xFF004182),
         body: SingleChildScrollView(
           child: Form(
-            key: formKey,
+            key: formKeyLogin,
             child: Center(
               child:
                   Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -47,7 +72,7 @@ class Login extends StatelessWidget {
                         height: MediaQuery.of(context).size.height * 0.03,
                       ),
                       Text(
-                        'User Name',
+                        'email',
                         style: TextStyle(
                             fontFamily: 'Poppins',
                             color: Colors.white,
@@ -57,7 +82,7 @@ class Login extends StatelessWidget {
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.01,
                       ),
-                      CustomTextFormField(
+                      CustomFormField(
                         hint: 'enter your email',
                         validator: (input) {
                           if (input == null || input.trim().isEmpty) {
@@ -65,7 +90,7 @@ class Login extends StatelessWidget {
                           }
                           return null;
                         },
-                        controller: emailController,
+                        controller: viewModel.emailController,
                         isSecureText: false,
                         keyboardType: TextInputType.name,
                       ),
@@ -83,7 +108,7 @@ class Login extends StatelessWidget {
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.01,
                       ),
-                      CustomTextFormField(
+                      CustomFormField(
                         hint: 'enter your password',
                         validator: (input) {
                           if (input == null || input.isEmpty) {
@@ -94,7 +119,7 @@ class Login extends StatelessWidget {
                           }
                           return null;
                         },
-                        controller: passwordController,
+                        controller: viewModel.passwordController,
                         isSecureText: false,
                         keyboardType: TextInputType.name,
                       ),
@@ -115,6 +140,7 @@ class Login extends StatelessWidget {
                         child: ElevatedButton(
                           onPressed: () {
                             validatorTestField();
+                            viewModel.login();
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.white,
@@ -152,9 +178,10 @@ class Login extends StatelessWidget {
             ),
           ),
         ),
-    );
+    ),
+);
   }
   void validatorTestField(){
-    if(formKey.currentState?.validate() == true){}
+    if(formKeyLogin.currentState?.validate() == true){}
   }
 }
