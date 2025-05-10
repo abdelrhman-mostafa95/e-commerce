@@ -3,7 +3,6 @@ import 'package:ecommerce_app_v2/UI/home_screen/cubit/Home_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../tabs/category_tab/category_tab.dart';
 import '../tabs/favorite_tab/favorite_tab.dart';
 import '../tabs/home_tab/home_tab.dart';
 import '../tabs/profile_tab/profile_tab.dart';
@@ -24,6 +23,7 @@ class _HomeScreeState extends State<HomeScree> {
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
+            automaticallyImplyLeading: false,
             toolbarHeight: 80,
             backgroundColor: Colors.white,
             elevation: 0,

@@ -28,7 +28,7 @@ class BrandItem extends StatelessWidget {
               imageBuilder: (context, imageProvider) {
                 return CircleAvatar(
                   backgroundImage: imageProvider,
-                  radius: 50.r,
+                  radius: 10.r,
                 );
               },
               placeholder: (context, url) => const Center(

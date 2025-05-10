@@ -8,7 +8,7 @@ import '../../tabs/home_tab/cubit/home_tab_view_model.dart';
 import '../reusable_component/app_colors.dart';
 
 class CategoryItem extends StatelessWidget {
-  DataEntity item;
+  DataCategoryEntity item;
 
   CategoryItem({required this.item});
 
@@ -27,7 +27,7 @@ class CategoryItem extends StatelessWidget {
               imageBuilder: (context, imageProvider) {
                 return CircleAvatar(
                   backgroundImage: imageProvider,
-                  radius: 50.r,
+                  radius: 10.r,
                 );
               },
               placeholder: (context, url) => const Center(

@@ -1,6 +1,7 @@
 class Routes{
-  static const String SplashScreen = '/SplashScreen';
-  static const String Login = '/Login';
-  static const String SignUp = '/SignUp';
+  static const String splashScreen = '/SplashScreen';
+  static const String login = '/login';
+  static const String signUp = '/signUp';
   static const String homeScreen = '/';
+  static const String productDetailsScreen = '/productDetails';
 }

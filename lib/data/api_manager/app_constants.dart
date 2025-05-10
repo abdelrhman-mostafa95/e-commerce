@@ -4,4 +4,5 @@ class AppConstants{
   static const String endPointLogin = '/api/v1/auth/signin';
   static const String endPointAllCategories = '/api/v1/categories';
   static const String endPointAllBrands = '/api/v1/brands';
+  static const String endPointAllProducts = '/api/v1/products';
 }

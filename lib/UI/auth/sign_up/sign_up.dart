@@ -1,3 +1,4 @@
+import 'package:ecommerce_app_v2/UI/auth/log_in/login.dart';
 import 'package:ecommerce_app_v2/UI/auth/sign_up/cubit/sign_in_states.dart';
 import 'package:ecommerce_app_v2/UI/auth/sign_up/cubit/sign_up_view_model.dart';
 import 'package:ecommerce_app_v2/UI/core/widget/dialog_utils.dart';
@@ -8,7 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../core/widget/text_form_field.dart';
 
 class SignUp extends StatelessWidget {
-  static const String routeName = '/signup';
+  static const String routeName = '/signUp';
   var formKeyRegister = GlobalKey<FormState>();
   RegisterViewModel viewModel = getIt<RegisterViewModel>();
 
@@ -30,11 +31,15 @@ class SignUp extends StatelessWidget {
           DialogUtils.showMessage(
               context: context,
               message: 'Register Successfully',
-              negActionName: 'ok');
+              posActionName: 'Login',
+              posAction: () {
+                Navigator.pushReplacementNamed(context, Login.routeName);
+          });
         }
       },
       child: SafeArea(
         child: Scaffold(
+          resizeToAvoidBottomInset: false,
           backgroundColor: Color(0xFF004182),
           body: SingleChildScrollView(
             child: Form(
@@ -44,11 +49,36 @@ class SignUp extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Image.asset('assets/images/route.jpg'),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.02,
+                      ),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 15),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            InkWell(
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    SizedBox(
+                                      width: MediaQuery.of(context).size.width * 0.02,),
+                                    Text('login', style: TextStyle(
+                                        fontFamily: 'Poppins',
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.normal,
+                                        fontSize: 15),
+                                    ),
+                                  ],
+                                ),
+                                onTap: () {
+                                  Navigator.pushReplacementNamed(context, Login.routeName);
+                                }),
+                            SizedBox(
+                              height:
+                              MediaQuery.of(context).size.height * 0.005,
+                            ),
                             Text(
                               'Full Name',
                               style: TextStyle(

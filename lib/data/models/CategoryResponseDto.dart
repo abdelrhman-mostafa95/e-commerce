@@ -26,7 +26,7 @@ class AllCategoriesDto extends AllCategoriesEntity {
   Metadata? metadata;
 }
 
-class DataDto extends DataEntity {
+class DataDto extends DataCategoryEntity {
   DataDto({
       super.id,
     super.name,

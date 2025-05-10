@@ -6,11 +6,13 @@ import 'package:ecommerce_app_v2/data/models/CategoryResponseDto.dart';
 
 import 'package:ecommerce_app_v2/domain/entities/AllCategoriesEntity.dart';
 import 'package:ecommerce_app_v2/domain/entities/BrandsResponseEntity.dart';
+import 'package:ecommerce_app_v2/domain/entities/ProductsEntity.dart';
 
 import 'package:ecommerce_app_v2/domain/failures.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../models/BrandResponseDto.dart';
+import '../../models/ProductDto.dart';
 import 'Home_remote_data_source.dart';
 
 @Injectable(as: HomeRemoteDataSource)
@@ -61,6 +63,34 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
         print('response status code ${response.statusCode}');
         if (response.statusCode! >= 200 && response.statusCode! < 300) {
           return Right(brandsResponse);
+        } else {
+          return Left(Failures(
+            errorMessage: response.data['message'] ?? 'Loading Failed',
+          ));
+        }
+      } else {
+        return Left(Failures(errorMessage: 'No internet connection'));
+      }
+    } catch (e) {
+      print(e.toString());
+      return Left(Failures(errorMessage: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failures, ProductDto>> getAllProducts() async{
+    try {
+      var checkConnection = await Connectivity().checkConnectivity();
+      print("Connection type: $checkConnection");
+      if (checkConnection.contains(ConnectivityResult.wifi) ||
+          checkConnection.contains(ConnectivityResult.mobile)) {
+        var response = await apiManager.getData(
+          AppConstants.endPointAllProducts,
+        );
+        var productResponse = ProductDto.fromJson(response.data);
+        print('response status code ${response.statusCode}');
+        if (response.statusCode! >= 200 && response.statusCode! < 300) {
+          return Right(productResponse);
         } else {
           return Left(Failures(
             errorMessage: response.data['message'] ?? 'Loading Failed',

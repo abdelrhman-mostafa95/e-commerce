@@ -3,12 +3,12 @@ class AllCategoriesEntity {
       this.results, 
       this.data,});
   int? results;
-  List<DataEntity>? data;
+  List<DataCategoryEntity>? data;
 
 }
 
-class DataEntity {
-  DataEntity({
+class DataCategoryEntity {
+  DataCategoryEntity({
       this.id, 
       this.name, 
       this.slug, 

@@ -5,7 +5,9 @@ import 'package:ecommerce_app_v2/data/models/RegisterResponseDto.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:ecommerce_app_v2/domain/failures.dart';
 import 'package:injectable/injectable.dart';
+import 'package:provider/provider.dart';
 
+import '../../../UI/core/favorite_provider.dart';
 import '../../models/LoginResponseDto.dart';
 import 'auth_remote_data_source.dart';
 

@@ -65,7 +65,7 @@ class HomeTab extends StatelessWidget {
     );
   }
 
-  SizedBox _buildCategorySec({required List<DataEntity> list}) {
+  SizedBox _buildCategorySec({required List<DataCategoryEntity> list}) {
     return SizedBox(
       height: 250.h,
       width: double.infinity,

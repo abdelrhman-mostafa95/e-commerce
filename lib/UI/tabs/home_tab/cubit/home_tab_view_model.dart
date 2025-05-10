@@ -19,9 +19,9 @@ class HomeTabViewModel extends Cubit<CategoryStates> {
 
   HomeTabViewModel({required this.allCategoriesUseCase, required this.allBrandsUseCase})
       : super(CategoryStates());
-  List<DataEntity> allCategories = [];
+  List<DataCategoryEntity> allCategories = [];
   List<DataBrandsEntity> allBrands = [];
-
+static HomeTabViewModel get(context) => BlocProvider.of(context);
   Future<void> getAllCategories() async {
     emit(CategoryLoadingState(loadingMessage: 'Loading ...'));
     var result = await allCategoriesUseCase.invoke();

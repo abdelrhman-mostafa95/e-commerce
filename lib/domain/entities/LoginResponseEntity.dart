@@ -20,4 +20,11 @@ class UserLoginEntity {
 
   String? name;
   String? email;
+
+  factory UserLoginEntity.fromJson(Map<String, dynamic> json) {
+    return UserLoginEntity(
+      name: json['name'],
+      email: json['email'],
+    );
+  }
 }
