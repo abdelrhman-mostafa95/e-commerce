@@ -1,16 +1,52 @@
-# ecommerce_app_v2
+🛒 ShopMaster - Your Ultimate E-Commerce App
 
-A new Flutter project.
+A robust E-commerce application built using Flutter with a Clean Architecture structure, integrating various APIs for authentication, products, categories, favorites, and cart management.
 
-## Getting Started
+✨ Features
 
-This project is a starting point for a Flutter application.
+User Authentication: Log in and log out using a dedicated API.
 
-A few resources to get you started if this is your first Flutter project:
+Product Management: Browse products, view details, and add to cart or favorites.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Categories: Display products based on categories fetched from the API.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Favorites & Cart Tabs: Easily access and manage favorite products and cart items.
+
+Clean Architecture: Organized project structure with data, domain, and presentation layers.
+
+🛠️ Technologies Used
+
+Flutter
+
+Clean Architecture (Data, Domain, Presentation layers)
+
+HTTP for API communication
+
+Provider / Bloc for state management
+
+SharedPreferences (for caching user data)
+
+📝 API Endpoints
+
+Authentication: /api/auth
+
+Products: /api/products
+
+Categories: /api/categories
+
+Favorites: /api/favorites
+
+Cart: /api/cart
+
+📦 Project Structure
+lib/
+├── data/
+│   ├── datasources/
+│   └── repositories/
+├── domain/
+│   ├── entities/
+│   └── usecases/
+├── presentation/
+│   ├── screens/
+│   └── widgets/
+└── main.dart
